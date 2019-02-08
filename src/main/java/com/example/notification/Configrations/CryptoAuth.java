@@ -14,10 +14,10 @@ import java.util.Base64;
 public class CryptoAuth {
 
 
-    public String decryptValue() throws NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, InvalidKeyException {
+    public static String decryptValue(String cipherText) throws NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, InvalidKeyException {
 
-        String secret = "René Über";
-        String cipherText = "U2FsdGVkX1+tsmZvCEFa/iGeSA0K7gvgs9KXeZKwbCDNCs2zPo+BXjvKYLrJutMK+hxTwl/hyaQLOaD7LLIRo2I5fyeRMPnroo6k8N9uwKk=";
+
+        String secret = "@#!^%sa#saf%#*JHHDAD&^*asf^%&";
 
         byte[] cipherData = Base64.getDecoder().decode(cipherText);
         byte[] saltData = Arrays.copyOfRange(cipherData, 8, 16);

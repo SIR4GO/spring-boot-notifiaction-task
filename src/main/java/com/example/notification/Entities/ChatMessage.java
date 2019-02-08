@@ -5,6 +5,7 @@ public class ChatMessage {
 	private String content;
 	private String sender;
 	private String to;
+	private String type;
 
 
 
@@ -31,5 +32,13 @@ public class ChatMessage {
 
 	public void setTo(String to) {
 		this.to = to;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

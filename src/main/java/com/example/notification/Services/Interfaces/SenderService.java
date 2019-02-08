@@ -5,4 +5,5 @@ import com.example.notification.Entities.Sender;
 public interface SenderService  {
 
     void saveSender(Sender sender);
+    Sender authSender(String username , String password ) throws Exception;
 }
