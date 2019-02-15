@@ -9,6 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Sender {
@@ -30,14 +32,11 @@ public class Sender {
     private String password;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "topic_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Topic topic;
+    @ManyToMany(cascade = {CascadeType.MERGE ,  CascadeType.PERSIST})
+    private List <Topic> topics = new ArrayList<>();
 
 
     public Sender(){}
-
 
     public Integer getId() {
         return id;
@@ -71,11 +70,13 @@ public class Sender {
         this.password = password;
     }
 
-    public Topic getTopic() {
-        return topic;
+
+    public List<Topic> getTopics() {
+        return topics;
     }
 
-    public void setTopic(Topic topic) {
-        this.topic = topic;
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
+
     }
 }

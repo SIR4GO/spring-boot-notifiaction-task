@@ -14,6 +14,8 @@ public class AES {
     private static SecretKeySpec secretKey;
     private static byte[] key;
 
+    private static String secret = "@#$$FDJKBDB%^&*())&^%JVJDK";
+
     public static void setKey(String myKey)
     {
         MessageDigest sha = null;
@@ -36,7 +38,7 @@ public class AES {
     {
         try
         {
-            setKey("@#$$FDJKBDB%^&*())&^%JVJDK");
+            setKey(AES.secret);
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
@@ -48,11 +50,11 @@ public class AES {
         return null;
     }
 
-    public static String decrypt(String strToDecrypt, String secret)
+    public static String decrypt(String strToDecrypt)
     {
         try
         {
-            setKey(secret);
+            setKey(AES.secret);
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));

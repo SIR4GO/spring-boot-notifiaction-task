@@ -3,6 +3,7 @@ package com.example.notification.Entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Topic {
@@ -15,6 +16,10 @@ public class Topic {
     @NotNull
     private String name;
 
+
+
+    @ManyToMany(mappedBy = "topics")
+    private List<Sender> senders;
 
     public Topic(){}
 

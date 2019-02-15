@@ -6,4 +6,5 @@ public interface SenderService  {
 
     void saveSender(Sender sender);
     Sender authSender(String username , String password ) throws Exception;
+    String existSender(String token);
 }

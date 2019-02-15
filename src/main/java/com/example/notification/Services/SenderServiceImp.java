@@ -1,5 +1,6 @@
 package com.example.notification.Services;
 
+import com.example.notification.Configrations.AES;
 import com.example.notification.Configrations.CryptoAuth;
 import com.example.notification.Entities.Sender;
 import com.example.notification.Repositories.SenderRepo;
@@ -28,6 +29,24 @@ public class SenderServiceImp implements SenderService {
                  return senderRepo.findByUsername(username);
 
           throw new Exception("Sender not found please re login");
+    }
+
+    @Override
+    public String existSender(String token) {
+         String decryptedToken = AES.decrypt(token);
+        System.out.println(decryptedToken);
+         String [] cardinality = decryptedToken.split(",");
+
+        System.out.println(cardinality);
+        String username =  cardinality[0];
+        String password =  cardinality[1];
+
+        System.out.println(username);
+        System.out.println(password);
+        if(senderRepo.existsByUsername(username) && senderRepo.existsByPassword(password))
+            return "exist";
+
+        return "not exist";
     }
 
 
